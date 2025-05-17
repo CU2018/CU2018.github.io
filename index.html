@@ -36,19 +36,20 @@
             background-color: var(--bg-color);
             margin: 0;
             padding: 0;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
         }
 
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Saira Extra Condensed', 'Inter', sans-serif;
             color: var(--heading-color);
             font-weight: 700;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 clamp(1rem, 3vw, 2rem);
         }
 
         /* Navigation */
@@ -72,6 +73,7 @@
         .nav-links {
             display: flex;
             gap: 1rem;
+            transition: all 0.3s ease;
         }
 
         .nav-links a {
@@ -204,7 +206,7 @@
             padding: 2rem;
             margin: 1rem 0;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .card:hover {
@@ -305,32 +307,61 @@
         }
 
         .project-controls {
-            position: absolute;
-            bottom: -40px;
+            position: relative;
+            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             gap: 10px;
             align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 1rem 0;
+            margin-top: 1rem;
         }
 
         .project-control-btn {
             background: var(--primary-color);
             color: white;
             border: none;
-            padding: 8px 15px;
+            padding: 0.8rem 1.2rem;
             border-radius: 20px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-control-btn i {
+            font-size: 0.9rem;
         }
 
         .project-control-btn:hover {
             background: var(--secondary-color);
+            transform: translateY(-2px);
         }
 
         .project-control-btn.active {
             background: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .project-controls {
+                padding: 0.8rem 0;
+                gap: 8px;
+            }
+
+            .project-control-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            .project-control-btn i {
+                font-size: 0.85rem;
+            }
         }
 
         @keyframes scroll {
@@ -389,26 +420,91 @@
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.98);
+                padding: 1rem;
+                flex-direction: column;
+                align-items: center;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-content {
+                padding: 0.5rem 1rem;
             }
 
             .hero h1 {
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
 
-            .section-title {
-                font-size: 2.2rem;
-            }
-
-            body {
-                font-size: 1rem;
-            }
-
-            .card h3 {
+            .hero .lead {
                 font-size: 1.4rem;
             }
 
-            .lead {
+            .hero p {
                 font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .experience-item {
+                flex-direction: column;
+            }
+
+            .experience-image {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+
+            #publication .experience-image {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+
+            .project-card {
+                min-width: 280px;
+                max-width: 280px;
+            }
+
+            .video-container iframe {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 16/9;
+            }
+
+            .motto-text {
+                font-size: 1.1rem;
+            }
+
+            .motto-text.chinese {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Add hamburger menu for mobile */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
             }
         }
 
@@ -430,7 +526,7 @@
         .badge {
             display: inline-block;
             padding: 0.35em 0.65em;
-            font-size: 0.85em;
+            font-size: clamp(0.8rem, 1.5vw, 0.85rem);
             font-weight: 600;
             line-height: 1;
             text-align: center;
@@ -439,7 +535,7 @@
             border-radius: 0.25rem;
             background: var(--secondary-color);
             color: var(--badge-text);
-            margin: 0.2rem;
+            margin: clamp(0.1rem, 0.5vw, 0.2rem);
             text-decoration: none;
             transition: all 0.3s ease;
         }
@@ -465,7 +561,7 @@
 
         .social-icon {
             color: var(--text-color);
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 2vw, 1.8rem);
             transition: all 0.3s ease;
         }
 
@@ -556,7 +652,7 @@
         }
 
         .lead {
-            font-size: 1.35rem;
+            font-size: clamp(1.2rem, 2vw, 1.35rem);
             font-weight: 500;
             color: var(--text-color);
         }
@@ -786,6 +882,9 @@
             <a href="#" class="logo">
                 <img src="assets/img/logo.png" alt="C_U Logo">
             </a>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
             <div class="nav-links">
                 <a href="#bio">Bio</a>
                 <a href="#experience">Experience</a>
@@ -1578,6 +1677,46 @@
 
             window.addEventListener('scroll', setActiveLink);
             window.addEventListener('load', setActiveLink);
+        });
+
+        // Add this to your existing JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                // Toggle hamburger icon
+                const icon = hamburger.querySelector('i');
+                if (navLinks.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+                    navLinks.classList.remove('active');
+                    const icon = hamburger.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            // Close mobile menu when clicking a link
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    const icon = hamburger.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
         });
     </script>
 </body>
